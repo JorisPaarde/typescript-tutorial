@@ -20,11 +20,13 @@ form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
 
     let doc : HasFormatter;
+    let values : [string, number,string]
+    values = [ tofrom.value, amount.valueAsNumber, details.value ]
     
     if (type.value == 'invoice'){
-        doc = new Invoice( tofrom.value, amount.valueAsNumber, details.value )
+        doc = new Invoice( ...values )
     }else{
-        doc = new Payment( tofrom.value, amount.valueAsNumber, details.value )
+        doc = new Payment( ...values )
     }
 
     list.render(doc, type.value, "end");
